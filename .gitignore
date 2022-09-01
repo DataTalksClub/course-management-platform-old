@@ -1,0 +1,5 @@
+/static/images
+/staticfiles
+.envrc
+.ebextensions/options.config
+*.sqlite3
