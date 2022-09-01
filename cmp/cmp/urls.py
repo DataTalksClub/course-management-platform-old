@@ -16,9 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from cmp import course_app
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('course_app/', include(course_app.urls)),
+    path('course_app/', include('course_app.urls')),
 ]
