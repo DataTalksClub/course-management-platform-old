@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<h1> Courses</h1>
+<ul>
+   {% for course in courses %} 
+        <li><a href="/course/{{course.id}}">  Title:{{course.title}}</a> --- Description: {{course.description}}</li>
+   {% endfor %}
+</ul>
+
+{% endblock content %}
