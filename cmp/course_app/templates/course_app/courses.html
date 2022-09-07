@@ -4,7 +4,7 @@
 <h1> Courses</h1>
 <ul>
    {% for course in courses %} 
-        <li><a href="/course/{{course.id}}">  Title:{{course.title}}</a> --- Description: {{course.description}}</li>
+        <li><a href="{% url 'course' course.id %}">  Title:{{course.title}}</a> --- Description: {{course.description}}</li>
    {% endfor %}
 </ul>
 
