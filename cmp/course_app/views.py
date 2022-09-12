@@ -1,34 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Course
 
-coursesList = [
-    {
-        'id':'1',
-        'title':'Machine Learning Zoomcamp',
-        'description':'Waht, never heard of it',
-    },
-    {
-        'id':'2',
-        'title':'Course n2',
-        'description':'Waht, never heard of it',
-    },
-    {
-        'id':'3',
-        'title':'MLOPs',
-        'description':'Waht, never heard of it',
-    }
-]
 
 def courses(request):
-    context = {'courses': coursesList}
+    courses = Course.objects.all()
+    context = {'courses': courses}
     return render(request, 'course_app/courses.html', context)
 
 def course(request, pk):
-    courseObj = None
-    for i in coursesList:
-        if i['id'] == pk:
-            courseObj = i
-
+    courseObj = Course.objects.get(id=pk)
     return render(request, 'course_app/course.html', {'course':courseObj})
 
 
