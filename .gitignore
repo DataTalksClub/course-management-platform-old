@@ -3,3 +3,4 @@
 .envrc
 .ebextensions/options.config
 *.sqlite3
+cmp/course_app/migrations/*

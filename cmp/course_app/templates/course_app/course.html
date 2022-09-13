@@ -3,4 +3,11 @@
 {% block content %}
 <h1> {{course.title}}</h1>
 <p>{{course.description}}</p>
+<ul>
+    {% for homework in course.homework_set.all %}
+    <li>
+        <a href="{% url 'homework' homework.id %}">{{homework}}</a>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock content %}

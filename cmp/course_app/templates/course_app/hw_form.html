@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<h1>Home Work Form</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit">
+</form>
+{% endblock content %}
