@@ -3,7 +3,11 @@
 {% block content %}
 <h1> {{homework.title}}</h1>
 <p>{{homework.description}}</p>
-<ul>
-    QUESTIONS FORM
-</ul>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
+
 {% endblock content %}

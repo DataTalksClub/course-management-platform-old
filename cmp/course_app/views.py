@@ -1,6 +1,9 @@
+from email.utils import format_datetime
 from django.shortcuts import render
 from django.http import HttpResponse
+
 from .models import Course, Homework
+from .forms import QuestionForm
 
 
 def courses(request):
@@ -15,11 +18,12 @@ def course(request, pk):
 
 def homework(request, pk):
     homework = Homework.objects.get(id=pk)
-    context = {'homework': homework}
+    form = QuestionForm()
+    context = {'homework': homework, 'form':form}
     return render(request, 'course_app/homework.html', context)
 
-def submitHomework(request):
-    context = {}
-    return render(request, 'course_app/hw_form.html', context)
+# def submitHomework(request):
+#     context = {}
+#     return render(request, 'course_app/hw_form.html', context)
 
 
