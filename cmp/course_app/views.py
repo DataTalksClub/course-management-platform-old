@@ -18,7 +18,7 @@ def course(request, pk):
 
 def homework(request, pk):
     homework = Homework.objects.get(id=pk)
-    form = QuestionForm()
+    form = QuestionForm(homework)
     context = {'homework': homework, 'form':form}
     return render(request, 'course_app/homework.html', context)
 
