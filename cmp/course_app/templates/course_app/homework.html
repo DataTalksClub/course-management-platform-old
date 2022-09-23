@@ -4,7 +4,7 @@
 <h1> {{homework.title}}</h1>
 <p>{{homework.description}}</p>
 
-<form method="POST">
+<form action="{% url 'homework' homework.id %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit">

@@ -1,3 +1,5 @@
+
+# from email.policy import default
 from django.db import models
 
 # Create your models here.
@@ -57,6 +59,12 @@ class Leaderboard(models.Model):
     email_hash = models.CharField(max_length=40, null=False, blank=False)
     scores = models.JSONField()
     total_score = models.IntegerField(default=0, null=True, blank=True)
+
+class Submission(models.Model):
+    homework = models.ForeignKey(Homework, on_delete=models.PROTECT)
+    participant_email = models.EmailField(max_length=255)
+    answer = models.JSONField(blank=True, null=True)
+    status = models.CharField(max_length=255)
 
     
 

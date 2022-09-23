@@ -1,6 +1,8 @@
 # from django.forms import ModelForm
 from django import forms
-from .models import Question
+
+
+from .models import Submission, Question
 
 class QuestionForm(forms.Form):
     email = forms.EmailField()
@@ -10,12 +12,10 @@ class QuestionForm(forms.Form):
         self.homework = homework
         
         for question in homework.question_set.all():
-            print("question", question.type)
+            # print("question", question.type)
             if question.type == "radio":
                 choices = list(enumerate(question.options))
-                print(choices)
-        
-                self.fields[f"question_{question.id}"] = forms.MultipleChoiceField(widget=forms.RadioSelect, choices=choices)
+                self.fields[f"question_{question.id}"] = forms.MultipleChoiceField(widget=forms.SelectMultiple, choices=choices)
                 self.fields[f"question_{question.id}"].label = question.question
             elif question.type == "text":
                 self.fields[f"question_{question.id}"] = forms.CharField(widget=forms.TextInput)
@@ -23,6 +23,16 @@ class QuestionForm(forms.Form):
             else: 
                 self.fields[f"question_{question.id}"] = forms.URLField(widget=forms.URLInput)
                 self.fields[f"question_{question.id}"].label = question.question
+
+    def save(self):
+        data = self.cleaned_data
+        print("DATA====>", data)
+        submission = Submission(homework=self.homework, participant_email=data["email"])
+        submission.answer = data
+        submission.save()
+
+        
+
 
                 
         
