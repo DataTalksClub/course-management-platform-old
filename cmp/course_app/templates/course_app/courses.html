@@ -2,10 +2,22 @@
 
 {% block content %}
 <h1> Courses</h1>
-<ul>
+
+<div class="row">
    {% for course in courses %} 
-        <li><a href="{% url 'course' course.id %}">  Title:{{course.title}}</a> --- Description: {{course.description}}</li>
+        <div class="col-md-4" >
+        <div class="card bg-secondary mb-3" style="max-width: 20rem;">
+         <div class="card-header">
+            <a href="{% url 'course' course.id %}"> {{course.title}}</a>
+         </div>
+         <div class="card-body">
+           <h4 class="card-title">{{course.title}} </h4>
+           <p class="card-text">{{course.description}}</p>
+         </div>
+       </div>
+      </div>
    {% endfor %}
-</ul>
+   </div>
+
 
 {% endblock content %}
