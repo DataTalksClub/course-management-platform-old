@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.linkedin_oauth2',
+    # 'allauth.socialaccount.providers.slack',
+
 
 
 ]
@@ -160,7 +164,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 
-SITE_ID = 2
+SITE_ID = 3
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = '/'
