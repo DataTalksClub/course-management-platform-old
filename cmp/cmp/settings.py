@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
     # 'allauth.socialaccount.providers.linkedin_oauth2',
-    # 'allauth.socialaccount.providers.slack',
+    'allauth.socialaccount.providers.slack',
 
 
 
@@ -173,3 +173,4 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 # ACCOUNT_EMAIL_REQUIRED = True
 
 SOCIALACCOUNT_QUERY_EMAIL = True
+# ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
