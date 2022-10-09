@@ -164,7 +164,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 
-SITE_ID = 3
+SITE_ID = int(os.getenv('SITE_ID', '3'))
 
 LOGIN_REDIRECT_URL = 'home'
 
