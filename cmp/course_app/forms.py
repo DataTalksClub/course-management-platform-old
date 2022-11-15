@@ -36,6 +36,6 @@ class QuestionForm(forms.Form):
         print("DATA====>", data)
 
         email = data.pop("email")
-        submission = Submission(homework=self.homework,                 participant_email=email)
+        submission = Submission(homework=self.homework, participant_email=email)
         submission.answer = data
         submission.save()
