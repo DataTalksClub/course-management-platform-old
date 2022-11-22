@@ -11,9 +11,7 @@
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
 <style>
   body {
     background-color: #EAEDFD;
@@ -22,6 +20,20 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
+}
+.btn-google {
+  color: white !important;
+  background-color: #3F80EC !important;
+}
+
+.btn-github {
+  color: white !important;
+  background-color: #444444 !important;
+}
+
+.btn-slack {
+  color: white !important;
+  background-color: #4A154B !important;
 }
 
   
@@ -34,6 +46,8 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
         <div class="card border-0 shadow rounded-3 my-5">
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
+
+              
             <form class="login" method="POST" action="{% url 'account_login' %}">
               <div class="form-floating mb-3">
                 {% csrf_token %}
@@ -51,12 +65,26 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
               <hr class="my-4">
             </div>
             </form>
-            <div class="socialaccount_providers d-grid mb-2">
-  
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+            <div class="socialaccount_providers">
+            <div  class="d-grid mb-2">
+              <a class="btn btn-lg  btn-google btn-login text-uppercase fw-bold" href="{% provider_login_url 'google' %}" role="button">
+                <i class="fa fa-google me-2"></i>Signin with Google</a>
+    
+            </div>
+            <div  class="d-grid mb-2">
+              <a class="btn btn-lg  btn-github btn-login text-uppercase fw-bold" href="{% provider_login_url 'github' %}" role="button"><i class="fa fa-github me-2"></i>Signin with Github</a>
+    
             </div>
 
-  <div class="login-or">{% trans 'or' %}</div>
+            <div  class="d-grid mb-2">
+              <a class="btn btn-lg  btn-slack btn-login text-uppercase fw-bold" href="{% provider_login_url 'slack' %}" role="button"><i class="fa fa-slack me-2"></i>Signin with Slack</a>
+    
+            </div>
+          </div>
+
+  <div class="login-or">
+    
+  </div>
 
 
 
@@ -66,6 +94,9 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 <p>{% blocktrans %}If you have not created an account yet, then please
 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 {% endif %}
+
+<p>{% blocktrans %} Don't have an accoun?
+  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 
 
