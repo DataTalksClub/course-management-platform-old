@@ -162,7 +162,10 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 AUTH_USER_MODEL = 'users.User'
-ACCOUNT_FORMS = {'login': 'users.forms.CustomLoginForm'}
+ACCOUNT_FORMS = {
+    'login': 'users.forms.CustomLoginForm',
+    'signup': 'users.forms.CustomSignupForm',
+                    }
 
 
 
