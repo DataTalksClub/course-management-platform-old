@@ -91,12 +91,12 @@
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+<!-- <p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p> -->
 {% endif %}
-
-<p>{% blocktrans %} Don't have an accoun?
-  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+<br>
+<p>{% blocktrans %} Don't have an account?
+  <a href="{{ signup_url }}">Sign Up</a> first.{% endblocktrans %}</p>
 <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 
 
