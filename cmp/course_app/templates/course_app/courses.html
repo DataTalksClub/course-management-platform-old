@@ -10,7 +10,7 @@
          <div class="card-header">
             <a href="{% url 'course' course.id %}"> {{course.title}}</a>
          </div>
-         <img src="..." class="card-img-top" alt="...">
+         <img src="{{ course.image.url }}" class="card-img-top" alt="...">
          <div class="card-body">
            <h4 class="card-title">{{course.title}} </h4>
            <p class="card-text">{{course.description}}</p>

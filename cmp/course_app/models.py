@@ -7,6 +7,7 @@ from django.db import models
 class Course(models.Model):
     id = models.AutoField(primary_key=True, editable=False, unique=True)
     title = models.CharField(max_length=200)
+    image = models.ImageField(null=True, blank=True, default="default.svg")
     description = models.TextField(null=True, blank=True) 
     # course_link = models.Charfield(max_length=2000, null=True, blank=True)
     # projects = 
