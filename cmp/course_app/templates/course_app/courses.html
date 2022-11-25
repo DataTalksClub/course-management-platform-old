@@ -12,7 +12,8 @@
          </div>
          <img src="{{ course.image.url }}" class="card-img-top" alt="...">
          <div class="card-body">
-           <h4 class="card-title">{{course.title}} </h4>
+            
+           <h4 class="card-title"> From {{ course.start_date }} untill {{ course.end_date }}</h4>
            <p class="card-text">{{course.description}}</p>
          </div>
        </div>

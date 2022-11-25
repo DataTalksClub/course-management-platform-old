@@ -1,13 +1,30 @@
-{% extends 'main.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<h1> {{course.title}}</h1>
-<p>{{course.description}}</p>
-<ul>
-    {% for homework in course.homework_set.all %}
-    <li>
-        <a href="{% url 'homework' homework.id %}">{{homework}}</a>
-    </li>
-    {% endfor %}
-</ul>
+<div class="container">
+<div class="row">
+    <div class="col-sm-9">
+
+<div class="card mb-4">
+    <img class="card-img img-fluid" src="{{ course.image.url }}" alt="..." />
+    <div class="card-body">
+        <div class="small text-muted">{{ course.start_date }}</div>
+        <h2 class="card-title">{{ course.title }}</h2>
+        <p class="card-text">{{ course.description }}</p>
+        <!-- <a class="btn btn-primary" href="#!">Read more →</a> -->
+    </div>
+    <ul>
+        {% for homework in course.homework_set.all %}
+        <li>
+            <a href="{% url 'homework' homework.id %}">{{homework}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
 {% endblock content %}
