@@ -175,7 +175,7 @@ ACCOUNT_FORMS = {
 SITE_ID = 4
 # SITE_ID = int(os.getenv('SITE_ID', '3'))
 
-LOGIN_REDIRECT_URL = 'courses'
+LOGIN_REDIRECT_URL = 'account_profile'
 
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
