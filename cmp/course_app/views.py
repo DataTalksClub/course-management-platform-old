@@ -21,7 +21,7 @@ def course(request, pk):
 def homework(request, pk):
     homework = Homework.objects.get(id=pk)
     post_data = request.POST if request.method == "POST" else None
-    form = QuestionForm(homework, post_data)
+    form = QuestionForm(homework, post_data, user=request.user )
 
     url = reverse("homework", args=(pk,))
     if form.is_bound and form.is_valid():
@@ -29,6 +29,7 @@ def homework(request, pk):
         messages.add_message(request, messages.INFO, 'Submissions saved.')
         return redirect(url)
     context = {'homework': homework, 'form':form}
+    print('REQUEST', request.user)
     return render(request, 'course_app/homework.html', context)
 
 # def submitHomework(request):

@@ -1,6 +1,7 @@
 
 # from email.policy import default
 from django.db import models
+from users.models import User
 
 # Create your models here.
 
@@ -63,9 +64,16 @@ class Leaderboard(models.Model):
 
 class Submission(models.Model):
     homework = models.ForeignKey(Homework, on_delete=models.PROTECT)
-    participant_email = models.EmailField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     answer = models.JSONField(blank=True, null=True)
     status = models.CharField(max_length=255)
+
+class Enrolment(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True, editable=False, unique=True)
+
+
 
     
 

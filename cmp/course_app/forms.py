@@ -6,9 +6,10 @@ from .models import Submission, Question
 
 
 class QuestionForm(forms.Form):
-    email = forms.EmailField()
+    # user = None
 
     def __init__(self, homework, *args, **kwargs):
+        self.user = kwargs.pop('user') 
         super().__init__(*args, **kwargs)
         self.homework = homework
 
@@ -34,8 +35,12 @@ class QuestionForm(forms.Form):
     def save(self):
         data = self.cleaned_data.copy()
         print("DATA====>", data)
+        # print("USER", user)
 
-        email = data.pop("email")
-        submission = Submission(homework=self.homework, participant_email=email)
+        
+        submission = Submission(homework=self.homework, user=self.user)
         submission.answer = data
+        print("Submission", submission.user, submission.answer)
+
+        # save self.user 
         submission.save()

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
 
+
 class UserManager(BaseUserManager):
 
   def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
@@ -49,5 +50,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_absolute_url(self):
         return "/users/%i/" % (self.pk)
-
 
