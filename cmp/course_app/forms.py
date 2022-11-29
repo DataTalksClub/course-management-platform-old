@@ -9,32 +9,40 @@ class QuestionForm(forms.Form):
     # user = None
 
     def __init__(self, homework, *args, **kwargs):
-        self.user = kwargs.pop('user') 
+        self.user = kwargs.pop('user')
+        answer = kwargs.pop('answer', {})
+
         super().__init__(*args, **kwargs)
         self.homework = homework
 
         for question in homework.question_set.all():
+            question_id = f"question_{question.id}"
+
             # print("question", question.type)
             if question.type == "radio":
                 choices = list(enumerate(question.options))
-                self.fields[f"question_{question.id}"] = forms.MultipleChoiceField(
-                    widget=forms.SelectMultiple, choices=choices
+                field = forms.MultipleChoiceField(
+                    widget=forms.SelectMultiple, choices=choices, 
                 )
-                self.fields[f"question_{question.id}"].label = question.question
             elif question.type == "text":
-                self.fields[f"question_{question.id}"] = forms.CharField(
+                field = forms.CharField(
                     widget=forms.TextInput
                 )
-                self.fields[f"question_{question.id}"].label = question.question
             else:
-                self.fields[f"question_{question.id}"] = forms.URLField(
+                field = forms.URLField(
                     widget=forms.URLInput
                 )
-                self.fields[f"question_{question.id}"].label = question.question
+            
+            field.label = question.question
+        
+            if question_id in answer:
+                field.initial = answer[question_id]
+    
+            self.fields[question_id] = field
 
     def save(self):
         data = self.cleaned_data.copy()
-        print("DATA====>", data)
+        # print("DATA====>", data)
         # print("USER", user)
 
         
