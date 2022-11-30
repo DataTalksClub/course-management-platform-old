@@ -30,7 +30,7 @@ def homework(request, pk):
         form = QuestionForm(homework, post_data, user=request.user )
     else:
         form = QuestionForm(homework, post_data, user=request.user,
-            answer=submissions[0].answer)
+            answer=submissions[0].answer, id=submissions[0].id)
 
     url = reverse("homework", args=(pk,))
     if form.is_bound and form.is_valid():

@@ -11,6 +11,7 @@ class QuestionForm(forms.Form):
     def __init__(self, homework, *args, **kwargs):
         self.user = kwargs.pop('user')
         answer = kwargs.pop('answer', {})
+        self.id = kwargs.pop('id', None)
 
         super().__init__(*args, **kwargs)
         self.homework = homework
@@ -42,13 +43,9 @@ class QuestionForm(forms.Form):
 
     def save(self):
         data = self.cleaned_data.copy()
-        # print("DATA====>", data)
-        # print("USER", user)
-
         
-        submission = Submission(homework=self.homework, user=self.user)
+        submission = Submission(id=self.id, homework=self.homework, user=self.user)
         submission.answer = data
-        print("Submission", submission.user, submission.answer)
-
+    
         # save self.user 
         submission.save()

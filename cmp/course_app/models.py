@@ -63,10 +63,12 @@ class Leaderboard(models.Model):
     total_score = models.IntegerField(default=0, null=True, blank=True)
 
 class Submission(models.Model):
+    id = models.AutoField(primary_key=True, editable=False, unique=True)
     homework = models.ForeignKey(Homework, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     answer = models.JSONField(blank=True, null=True)
     status = models.CharField(max_length=255)
+
 
 class Enrolment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
