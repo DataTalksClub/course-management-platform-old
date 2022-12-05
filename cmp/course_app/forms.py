@@ -43,7 +43,7 @@ class QuestionForm(forms.Form):
 
     def save(self):
         data = self.cleaned_data.copy()
-        
+        # id of already exicting submission in the table
         submission = Submission(id=self.id, homework=self.homework, user=self.user)
         submission.answer = data
     
