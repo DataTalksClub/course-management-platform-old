@@ -21,16 +21,23 @@ def course(request, pk):
 def homework(request, pk):
     homework = Homework.objects.get(id=pk)
     post_data = request.POST if request.method == "POST" else None
-    print("REQUEST====>", request.POST)
-    print("HOMEWORK===>", homework.id)
-    print("USER", request.user.id)
+
     submissions = Submission.objects.filter(user__email=request.user, homework__id=homework.id)
+    print("HOMEWORK", homework)
     
     if len(submissions) == 0:
         form = QuestionForm(homework, post_data, user=request.user )
     else:
-        form = QuestionForm(homework, post_data, user=request.user,
-            answer=submissions[0].answer, id=submissions[0].id)
+        submission = submissions[0]
+        answer = submission.answer
+        for question in homework.question_set.all():
+            question_id = f"question_{question.id}"
+            print("LOOK WHAT IS IN THERE ++>",question, answer[question_id] )
+        context = { 'homework': homework, 'submissions':  submissions[0] }
+        # form = QuestionForm(homework, post_data, user=request.user,
+        #     answer=submissions[0].answer, id=submissions[0].id)
+        return render(request, 'course_app/homework_sub.html', context)
+
 
     url = reverse("homework", args=(pk,))
     if form.is_bound and form.is_valid():

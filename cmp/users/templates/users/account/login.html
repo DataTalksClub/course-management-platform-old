@@ -82,15 +82,13 @@
             </div>
           </div>
 
-  <div class="login-or">
-    
-  </div>
+  
 
 
 
 {% include "socialaccount/snippets/login_extra.html" %}
 
-{% else %}
+{% comment %} {% else %} {% endcomment %}
 <!-- <p>{% blocktrans %}If you have not created an account yet, then please
 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p> -->
 {% endif %}
