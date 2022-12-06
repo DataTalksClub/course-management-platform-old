@@ -2,16 +2,14 @@
 
 {% block content %}
 <h1> {{homework.title}}</h1>
-<p>{{homework.description}}</p>
+
 <li>
-{% for question in homework.question_set.all %}
-    <ul>{{question}}</ul>
+    
+{% for question, answer in results %}
+    <ul>{{question}} - {{answer}}</ul>
 {% endfor%}
 
-    <p>{{submissions}}</p>
-{% for  in homework.question_set.all %}
-    <ul>{{question}}</ul>
-{% endfor%}
+   
 
 </li>  
 

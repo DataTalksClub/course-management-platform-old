@@ -25,20 +25,24 @@ def homework(request, pk):
     submissions = Submission.objects.filter(user__email=request.user, homework__id=homework.id)
     print("HOMEWORK", homework)
     
-    if len(submissions) == 0:
-        form = QuestionForm(homework, post_data, user=request.user )
-    else:
+    if len(submissions) > 0:
         submission = submissions[0]
-        answer = submission.answer
+        answers = submission.answer
+
+        results = []
+        
         for question in homework.question_set.all():
             question_id = f"question_{question.id}"
-            print("LOOK WHAT IS IN THERE ++>",question, answer[question_id] )
-        context = { 'homework': homework, 'submissions':  submissions[0] }
-        # form = QuestionForm(homework, post_data, user=request.user,
-        #     answer=submissions[0].answer, id=submissions[0].id)
+            answer = answers[question_id]
+            # pair = {'question': question, 'answer': answer}
+            # results.append(pair)
+            results.append((question, answer))
+
+        context = { 'results': results , 'homework': homework }
+    
         return render(request, 'course_app/homework_sub.html', context)
 
-
+    form = QuestionForm(homework, post_data, user=request.user)
     url = reverse("homework", args=(pk,))
     if form.is_bound and form.is_valid():
         form.save()
