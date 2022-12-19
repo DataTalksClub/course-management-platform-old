@@ -1,16 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1> {{homework.title}}</h1>
 
-<li>
-    
-{% for question, answer in results %}
-    <ul>{{question}} - {{answer}}</ul>
-{% endfor%}
+{% comment %} <div class="container"> {% endcomment %}
+    <div class="row">
+        <div class="mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+                <div class="card-body p-4 p-sm-5">
+                    <h5 class="card-title text-center mb-5 fw-light fs-5">{{homework.title}}</h5>
+                    
+                    {% for question, answer in results %}
+                    <div class="form-group row">
+                        <div class="col-sm-2 col-form-label">{{question}}: </div>
+                        <p class="form-control">{{answer}}</p>
+                    </div>
+                    {% endfor%} 
+                   
+                    
+                
+                
 
-   
+                <div class="form-group row">
+                    <!-- panel-footer -->
+                    <div  class="d-grid mb-2 col-6 text-right">
+                        
+                        <a class="primaryAction btn btn-primary btn-login text-uppercase fw-bold" href="{% url 'courses' %}" role="button"> Back </a>
+                    </div>
+                    <div class="d-grid mb-2 col-6 text-right">
+                        <a class="primaryAction btn btn-primary btn-login text-uppercase fw-bold" href="{% url 'homework' homework.id %}" role="button"> Edit </a>
+                    </div>
+                </div>
+            </div>
 
-</li>  
+            </div>
+        </div>
+    </div>
+{% comment %} </div> {% endcomment %}
 
 {% endblock content %}
